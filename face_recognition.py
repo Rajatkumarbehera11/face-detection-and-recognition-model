@@ -10,18 +10,17 @@ faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_TRIPLEX
 
-#iniciate id counter
+
 id = 0
 
 
 names = [0, 1, 2, 3, 'Z', 'W'] 
 
-# Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
-cam.set(3, 640) # set video widht
-cam.set(4, 480) # set video height
+cam.set(3, 640) 
+cam.set(4, 480) 
 
-# Define min window size to be recognized as a face
+
 minW = 0.1*cam.get(3)
 minH = 0.1*cam.get(4)
 
@@ -45,7 +44,7 @@ while True:
 
         id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
 
-        # Check if confidence is less them 100 ==> "0" is perfect match 
+        
         if (confidence < 100):
             id = names[id]
             confidence = "  {0}%".format(round(100 - confidence))
@@ -62,7 +61,7 @@ while True:
     if k == 27:
         break
 
-# Do a bit of cleanup
+
 print("\n [INFO] Exiting Program")
 cam.release()
 cv2.destroyAllWindows()
